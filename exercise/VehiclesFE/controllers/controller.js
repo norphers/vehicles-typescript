@@ -1,9 +1,43 @@
 "use strict";
 var car;
-function createCar(plate, brand, color) {
-    car = new Car(plate, color, brand);
-    car.addWheel(new Wheel(2, "SEAT"));
-    var carPlate = document.getElementById("plate").innerText;
-    carPlate = car.plate;
-    //document.body.innerText = "CAR: PLATE: " + car.plate + " COLOR: " + car.color + " BRAND: " + car.brand + " WHEELS: " + JSON.stringify(car.wheels);
+function createCar() {
+    var carContainer = document.getElementById("create-car-container");
+    var plate = document.getElementById("inputPlate");
+    var brand = document.getElementById("inputBrand");
+    var color = document.getElementById("inputColor");
+    var tableContainer = document.getElementById("table-container");
+    var carTable = document.getElementById("car-table");
+    car = new Car(plate.value, color.value, brand.value);
+    //carContainer.style.display = "none";
+    var p = document.createElement("P");
+    var text = document.createTextNode("Car"); //`car: ${car.plate}, ${car.brand}, ${car.color}.`
+    p.appendChild(text);
+    tableContainer.appendChild(p);
+    var tHead = carTable.createTHead();
+    var row = tHead.insertRow();
+    var th1 = document.createElement("th");
+    var thText1 = document.createTextNode("Plate");
+    th1.appendChild(thText1);
+    row.appendChild(th1);
+    var th2 = document.createElement("th");
+    var thText2 = document.createTextNode("Brand");
+    th2.appendChild(thText2);
+    row.appendChild(th2);
+    var th3 = document.createElement("th");
+    var thText3 = document.createTextNode("Color");
+    th3.appendChild(thText3);
+    row.appendChild(th3);
+    var row2 = carTable.insertRow();
+    var cell1 = row.insertCell();
+    var plateText = document.createTextNode(car.plate);
+    cell1.appendChild(plateText);
+    row2.appendChild(cell1);
+    var cell2 = row.insertCell();
+    var brandText = document.createTextNode(car.brand);
+    cell2.appendChild(brandText);
+    row2.appendChild(cell2);
+    var cell3 = row.insertCell();
+    var colorText = document.createTextNode(car.color);
+    cell3.appendChild(colorText);
+    row2.appendChild(cell3);
 }
