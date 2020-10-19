@@ -1,43 +1,42 @@
 "use strict";
 var car;
 function createCar() {
-    var carContainer = document.getElementById("create-car-container");
     var plate = document.getElementById("inputPlate");
     var brand = document.getElementById("inputBrand");
     var color = document.getElementById("inputColor");
-    var tableContainer = document.getElementById("table-container");
-    var carTable = document.getElementById("car-table");
     car = new Car(plate.value, color.value, brand.value);
-    //carContainer.style.display = "none";
-    var p = document.createElement("P");
-    var text = document.createTextNode("Car"); //`car: ${car.plate}, ${car.brand}, ${car.color}.`
-    p.appendChild(text);
-    tableContainer.appendChild(p);
-    var tHead = carTable.createTHead();
-    var row = tHead.insertRow();
-    var th1 = document.createElement("th");
-    var thText1 = document.createTextNode("Plate");
-    th1.appendChild(thText1);
-    row.appendChild(th1);
-    var th2 = document.createElement("th");
-    var thText2 = document.createTextNode("Brand");
-    th2.appendChild(thText2);
-    row.appendChild(th2);
-    var th3 = document.createElement("th");
-    var thText3 = document.createTextNode("Color");
-    th3.appendChild(thText3);
-    row.appendChild(th3);
-    var row2 = carTable.insertRow();
-    var cell1 = row.insertCell();
-    var plateText = document.createTextNode(car.plate);
-    cell1.appendChild(plateText);
-    row2.appendChild(cell1);
-    var cell2 = row.insertCell();
-    var brandText = document.createTextNode(car.brand);
-    cell2.appendChild(brandText);
-    row2.appendChild(cell2);
-    var cell3 = row.insertCell();
-    var colorText = document.createTextNode(car.color);
-    cell3.appendChild(colorText);
-    row2.appendChild(cell3);
+    generateCarDisplay();
+}
+function createWheels() {
+    //wheels
+}
+function generateCarDisplay() {
+    deleteCarContainerFromView();
+    generateWheelsContainerForView();
+    generateTableDisplay();
+}
+function deleteCarContainerFromView() {
+    var carContainer = document.getElementById("car-container");
+    carContainer.style.display = "none";
+}
+function generateWheelsContainerForView() {
+    var wheelsContainer = document.getElementById("form-wheels-creation");
+    wheelsContainer.style.display = "block";
+}
+function generateTableDisplay() {
+    var carDisplayContent = document.getElementById("car-table");
+    var rowTitle = carDisplayContent.insertRow();
+    var rowContent = carDisplayContent.insertRow();
+    var cellTitle = rowTitle.insertCell();
+    var cellPlate = rowContent.insertCell();
+    var cellBrand = rowContent.insertCell();
+    var cellColor = rowContent.insertCell();
+    var title = document.createTextNode('Car: ');
+    var plate = document.createTextNode("Plate: " + car.plate);
+    var brand = document.createTextNode("Brand: " + car.brand);
+    var color = document.createTextNode("Color: " + car.color);
+    cellTitle.appendChild(title);
+    cellPlate.appendChild(plate);
+    cellBrand.appendChild(brand);
+    cellColor.appendChild(color);
 }

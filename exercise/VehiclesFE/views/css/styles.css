@@ -1,0 +1,47 @@
+body {
+    font-size: 3vh;
+}
+
+button {
+    margin-top: 4vh;
+}
+
+form {
+    margin-top: 2vh;
+}
+
+.car-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.wheels-container {
+    display: none;
+    text-align: center;
+    margin-top: 5vh;
+}
+
+.form-row {
+    margin-top: 4vh;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+    border: none;
+    margin-top: 5vh;
+}
+  
+th {
+    height: 50px;
+    border: none;
+}
+
+td {
+    border: none;
+    text-align: left;
+}

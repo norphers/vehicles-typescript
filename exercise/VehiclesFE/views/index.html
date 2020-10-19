@@ -1,55 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Vehicles</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-
-
-    <title>Vehicles</title>
-
+    <!-- CSS Styles-->
+    <link rel="stylesheet" href="./css/styles.css">
     <!-- Imports -->
     <script src="../models/car.js"></script>
     <script src="../models/wheel.js"></script>
     <script src="../controllers/controller.js"></script>
-
 </head>
 
-<body id="body">
+<body>
 
-    <div class="container text-center" id="create-car-container">
-        <div class="title">
-            <h1>Create a car</h1>
+    <!-- Car Data Capture Container -->
+    <div class="car-container" id="car-container">
+        <div>
+            <h2>Add your car info</h2>
         </div>
         <form>
             <div class="form-row">
                 <div class="col">
                     <label for="inputPlate">Plate</label>
                     <input type="text" class="form-control" id="inputPlate">
-                    <!-- validate form with javascript -->
                 </div>
                 <div class="col">
                     <label for="inputBrand">Brand</label>
                     <input type="text" class="form-control" id="inputBrand">
-                    <!-- validate form with javascript -->
                 </div>
                 <div class="col">
                     <label for="inputColor">Color</label>
                     <input type="text" class="form-control" id="inputColor">
-                    <!-- validate form with javascript -->
                 </div>
             </div>
         </form>
         <div>
-            <button class="btn btn-primary" onclick="createCar()">Create car</button>
+            <button type="submit" class="btn btn-primary" onclick="createCar()">Add car</button>
         </div>
     </div>
 
 
-    <div class="container">
-        <div class="text-center" id="table-container"></div>
-        <table class="table table-bordered text-center" id="car-table"></table>
+
+    <!-- Wheels Data Capture Container -->
+    <div class="container wheels-container" id="form-wheels-creation">
+        <div class="title">
+            <h2>Add your wheels</h2>
+        </div>
+        <form>
+            <div class="form-row">
+                <div class="col">
+                    <label for="inputWheel">Wheel 1 Brand </label>
+                    <input type="text" class="form-control" id="inputWheel1Brand">
+                </div>
+                <div class="col">
+                    <label for="inputWheel">Wheel 1 Diameter</label>
+                    <input type="text" class="form-control" id="inputWheel1Diameter">
+                </div>
+                <div class="col">
+                    <label for="inputWheel">Wheel 2 Brand </label>
+                    <input type="text" class="form-control" id="inputWheel2Brand">
+                </div>
+                <div class="col">
+                    <label for="inputWheel">Wheel 2 Diameter</label>
+                    <input type="text" class="form-control" id="inputWheel2Diameter">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="inputWheel">Wheel 3 Brand </label>
+                    <input type="text" class="form-control" id="inputWheel3Brand">
+                </div>
+                <div class="col">
+                    <label for="inputWheel">Wheel 3 Diameter</label>
+                    <input type="text" class="form-control" id="inputWheel3Diameter">
+                </div>
+                <div class="col">
+                    <label for="inputWheel">Wheel 4 Brand </label>
+                    <input type="text" class="form-control" id="inputWheel4Brand">
+                </div>
+                <div class="col">
+                    <label for="inputWheel">Wheel 4 Diameter</label>
+                    <input type="text" class="form-control" id="inputWheel4Diameter">
+                </div>
+            </div>
+        </form>
+        <div>
+            <button class="btn btn-primary" onclick="createWheels()">Add wheels</button>
+        </div>
+    </div>
+
+
+
+    <!-- Car Data Table Container -->
+    <div class="container car-display-container">
+        <div class="display-title" id="car-display"></div>
+        <table id="car-table"></table> <!-- delete table-bordered -->
+        <!--
+        <div class="text-center" id="wheels-display"></div>
+        <table class="table table-bordered text-center" id="wheels-table"></table>
+        -->
     </div>
 
 
