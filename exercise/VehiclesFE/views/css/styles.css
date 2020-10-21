@@ -1,13 +1,13 @@
 body {
-    font-size: 2vh;
+    font-size: 1.3rem;
 }
 
 button {
-    margin-top: 4vh;
+    margin-top: 1.5rem;
 }
 
 form {
-    margin-top: 2vh;
+    margin-top: 2rem;
 }
 
 .car-container {
@@ -21,11 +21,11 @@ form {
 .wheels-container {
     display: none;
     text-align: center;
-    margin-top: 5vh;
+    margin-top: 3rem;
 }
 
 .form-row {
-    margin-top: 4vh;
+    margin-top: 3rem;
 }
 
 table {
@@ -33,7 +33,8 @@ table {
     text-align: center;
     width: 100%;
     border: none;
-    margin-top: 5vh;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
   
 th {
@@ -44,4 +45,18 @@ th {
 td {
     border: none;
     text-align: left;
+}
+
+.invalid-feedback {
+    font-size: 1rem;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { 
+    -moz-appearance:textfield; 
 }
