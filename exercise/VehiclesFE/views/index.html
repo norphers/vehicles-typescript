@@ -22,19 +22,22 @@
         <div>
             <h2>Add your car info</h2>
         </div>
-        <form>
+        <form id="car-register" name="car-register">
             <div class="form-row">
                 <div class="col">
                     <label for="inputPlate">Plate</label>
                     <input type="text" class="form-control" id="inputPlate">
+                    <div class="invalid-feedback" id="errorPlate"></div>
                 </div>
                 <div class="col">
                     <label for="inputBrand">Brand</label>
                     <input type="text" class="form-control" id="inputBrand">
+                    <div class="invalid-feedback" id="errorBrand"></div>
                 </div>
                 <div class="col">
                     <label for="inputColor">Color</label>
                     <input type="text" class="form-control" id="inputColor">
+                    <div class="invalid-feedback" id="errorColor"></div>
                 </div>
             </div>
         </form>
@@ -50,41 +53,49 @@
         <div class="title">
             <h2>Add your wheels</h2>
         </div>
-        <form>
+        <form id="wheels-register">
             <div class="form-row">
                 <div class="col">
                     <label for="inputWheel">Wheel 1 Brand </label>
                     <input type="text" class="form-control" id="inputWheel1Brand">
+                    <div class="invalid-feedback" id="errorWheel1Brand"></div>
                 </div>
                 <div class="col">
                     <label for="inputWheel">Wheel 1 Diameter</label>
-                    <input type="number" class="form-control" id="inputWheel1Diameter">
+                    <input type="number" step="any" class="form-control" id="inputWheel1Diameter">
+                    <div class="invalid-feedback" id="errorWheel1Diameter"></div>
                 </div>
                 <div class="col">
                     <label for="inputWheel">Wheel 2 Brand </label>
                     <input type="text" class="form-control" id="inputWheel2Brand">
+                    <div class="invalid-feedback" id="errorWheel2Brand"></div>
                 </div>
                 <div class="col">
                     <label for="inputWheel">Wheel 2 Diameter</label>
                     <input type="number" class="form-control" id="inputWheel2Diameter">
+                    <div class="invalid-feedback" id="errorWheel2Diameter"></div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col">
                     <label for="inputWheel">Wheel 3 Brand </label>
                     <input type="text" class="form-control" id="inputWheel3Brand">
+                    <div class="invalid-feedback" id="errorWheel3Brand"></div>
                 </div>
                 <div class="col">
                     <label for="inputWheel">Wheel 3 Diameter</label>
                     <input type="number" class="form-control" id="inputWheel3Diameter">
+                    <div class="invalid-feedback" id="errorWheel3Diameter"></div>
                 </div>
                 <div class="col">
                     <label for="inputWheel">Wheel 4 Brand </label>
                     <input type="text" class="form-control" id="inputWheel4Brand">
+                    <div class="invalid-feedback" id="errorWheel4Brand"></div>
                 </div>
                 <div class="col">
                     <label for="inputWheel">Wheel 4 Diameter</label>
                     <input type="number" class="form-control" id="inputWheel4Diameter">
+                    <div class="invalid-feedback" id="errorWheel4Diameter"></div>
                 </div>
             </div>
         </form>
@@ -94,7 +105,7 @@
     </div>
 
 
-
+ 
     <!-- Car Data Table Container -->
     <div class="container car-display-container">
         <table id="car-table"></table>
