@@ -16,28 +16,22 @@ function createCar()
 
 function createWheels()
 {
-    let wheel1Brand:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheel1Brand");
-    let wheel1Diameter:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheel1Diameter");
-    let wheel2Brand:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheel2Brand");
-    let wheel2Diameter:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheel2Diameter");
-    let wheel3Brand:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheel3Brand");
-    let wheel3Diameter:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheel3Diameter");
-    let wheel4Brand:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheel4Brand");
-    let wheel4Diameter:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheel4Diameter");
-    let wheelsDataValidation = wheelsRegisterValidation(wheel1Brand, wheel1Diameter, wheel2Brand, wheel2Diameter, 
-                                                        wheel3Brand, wheel3Diameter, wheel4Brand, wheel4Diameter);
-    if(wheelsDataValidation) 
+    var wheelsValidated = 0;
+    for (var i=1; i<=4; i++) 
     {
-        let wheel1:Wheel = new Wheel(wheel1Diameter.valueAsNumber, wheel1Brand.value);
-        let wheel2:Wheel = new Wheel(wheel2Diameter.valueAsNumber, wheel2Brand.value);
-        let wheel3:Wheel = new Wheel(wheel3Diameter.valueAsNumber, wheel3Brand.value);
-        let wheel4:Wheel = new Wheel(wheel4Diameter.valueAsNumber, wheel4Brand.value);
-        car.addWheel(wheel1);
-        car.addWheel(wheel2);
-        car.addWheel(wheel3);
-        car.addWheel(wheel4);
-        generateWheelsDisplay()
-    }
+        var brand:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheelBrand" + i);
+        var diameter:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheelDiameter" + i);
+        var key = i;
+        var wheelDataValid = wheelsRegisterValidation(brand, diameter, key);
+        if(wheelDataValid)
+        {
+            wheelsValidated++;
+            
+            var wheel:Wheel = new Wheel(diameter.valueAsNumber, brand.value);
+            car.addWheel(wheel);
+        }
+    }   
+    if(wheelsValidated==4) { generateWheelsDisplay(); }  
 }
 
 
@@ -164,71 +158,26 @@ function validatePlate(plate:string)
 	return regex.test(plate) ? true : false;
 }
 
-function wheelsRegisterValidation( wheel1Brand:HTMLInputElement, wheel1Diameter:HTMLInputElement, 
-    wheel2Brand:HTMLInputElement, wheel2Diameter:HTMLInputElement, 
-    wheel3Brand:HTMLInputElement, wheel3Diameter:HTMLInputElement, 
-    wheel4Brand:HTMLInputElement, wheel4Diameter:HTMLInputElement) 
+function wheelsRegisterValidation(brand:HTMLInputElement, diameter:HTMLInputElement, key:any) 
 {
     const form:HTMLInputElement = <HTMLInputElement>document.getElementById('wheels-register');
-    let errorWheel1Brand:HTMLInputElement = <HTMLInputElement>document.getElementById('errorWheel1Brand');
-    let errorWheel1Diameter:HTMLInputElement = <HTMLInputElement>document.getElementById('errorWheel1Diameter');
-    let errorWheel2Brand:HTMLInputElement = <HTMLInputElement>document.getElementById('errorWheel2Brand');
-    let errorWheel2Diameter:HTMLInputElement = <HTMLInputElement>document.getElementById('errorWheel2Diameter');
-    let errorWheel3Brand:HTMLInputElement = <HTMLInputElement>document.getElementById('errorWheel3Brand');
-    let errorWheel3Diameter:HTMLInputElement = <HTMLInputElement>document.getElementById('errorWheel3Diameter');
-    let errorWheel4Brand:HTMLInputElement = <HTMLInputElement>document.getElementById('errorWheel4Brand');
-    let errorWheel4Diameter:HTMLInputElement = <HTMLInputElement>document.getElementById('errorWheel4Diameter');
-   
+    let errorWheelBrand:HTMLInputElement = <HTMLInputElement>document.getElementById('errorWheelBrand'+key);
+    let errorWheelDiameter:HTMLInputElement = <HTMLInputElement>document.getElementById('errorWheelDiameter'+key);
+
     let errorAccount = 0;
 
     form.classList.remove("is-invalid");
 
-	if (wheel1Brand.value == "") 
+	if (brand.value == "") 
 	{
-		wheel1Brand.classList.add("is-invalid");
-        errorWheel1Brand.textContent = "Brand is a required field";
+		brand.classList.add("is-invalid");
+        errorWheelBrand.textContent = "Brand is a required field";
 		errorAccount ++;
     }
-    if (!validateDiameter(Number(wheel1Diameter.value)))
+    if (!validateDiameter(Number(diameter.value)))
 	{
-		wheel1Diameter.classList.add("is-invalid");
-		errorWheel1Diameter.textContent = "Diameter must be between 0.4 and 2";
-		errorAccount ++;
-    }
-    if (wheel2Brand.value == "") 
-	{
-		wheel2Brand.classList.add("is-invalid");
-        errorWheel2Brand.textContent = "Brand is a required field";
-		errorAccount ++;
-    }
-    if (!validateDiameter(Number(wheel2Diameter.value)))
-	{
-		wheel2Diameter.classList.add("is-invalid");
-		errorWheel2Diameter.textContent = "Diameter must be between 0.4 and 2";
-		errorAccount ++;
-    }
-    if (wheel3Brand.value == "") 
-	{
-		wheel3Brand.classList.add("is-invalid");
-        errorWheel3Brand.textContent = "Brand is a required field";
-		errorAccount ++;
-    }
-    if (!validateDiameter(Number(wheel3Diameter.value)))
-	{
-		wheel3Diameter.classList.add("is-invalid");
-		errorWheel3Diameter.textContent = "Diameter must be between 0.4 and 2";
-		errorAccount ++;
-    }
-    if (wheel4Brand.value == "") 
-	{
-		wheel4Brand.classList.add("is-invalid");
-        errorWheel4Brand.textContent = "Brand is a required field";
-		errorAccount ++;
-    }
-    if (!validateDiameter(Number(wheel4Diameter.value)))
-	{
-		wheel4Diameter.classList.add("is-invalid");
-		errorWheel4Diameter.textContent = "Diameter must be between 0.4 and 2";
+		diameter.classList.add("is-invalid");
+		errorWheelDiameter.textContent = "Diameter must be between 0.4 and 2";
 		errorAccount ++;
     }
     
