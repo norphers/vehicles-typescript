@@ -11,24 +11,19 @@ function createCar() {
     }
 }
 function createWheels() {
-    var wheel1Brand = document.getElementById("inputWheel1Brand");
-    var wheel1Diameter = document.getElementById("inputWheel1Diameter");
-    var wheel2Brand = document.getElementById("inputWheel2Brand");
-    var wheel2Diameter = document.getElementById("inputWheel2Diameter");
-    var wheel3Brand = document.getElementById("inputWheel3Brand");
-    var wheel3Diameter = document.getElementById("inputWheel3Diameter");
-    var wheel4Brand = document.getElementById("inputWheel4Brand");
-    var wheel4Diameter = document.getElementById("inputWheel4Diameter");
-    var wheelsDataValidation = wheelsRegisterValidation(wheel1Brand, wheel1Diameter, wheel2Brand, wheel2Diameter, wheel3Brand, wheel3Diameter, wheel4Brand, wheel4Diameter);
-    if (wheelsDataValidation) {
-        var wheel1 = new Wheel(wheel1Diameter.valueAsNumber, wheel1Brand.value);
-        var wheel2 = new Wheel(wheel2Diameter.valueAsNumber, wheel2Brand.value);
-        var wheel3 = new Wheel(wheel3Diameter.valueAsNumber, wheel3Brand.value);
-        var wheel4 = new Wheel(wheel4Diameter.valueAsNumber, wheel4Brand.value);
-        car.addWheel(wheel1);
-        car.addWheel(wheel2);
-        car.addWheel(wheel3);
-        car.addWheel(wheel4);
+    var wheelsValidated = 0;
+    for (var i = 1; i <= 4; i++) {
+        var brand = document.getElementById("inputWheelBrand" + i);
+        var diameter = document.getElementById("inputWheelDiameter" + i);
+        var key = i;
+        var wheelDataValid = wheelsRegisterValidation(brand, diameter, key);
+        if (wheelDataValid) {
+            wheelsValidated++;
+            var wheel = new Wheel(diameter.valueAsNumber, brand.value);
+            car.addWheel(wheel);
+        }
+    }
+    if (wheelsValidated == 4) {
         generateWheelsDisplay();
     }
 }
@@ -126,56 +121,20 @@ function validatePlate(plate) {
     var regex = /^[0-9]{4}[a-zA-Z]{3}$/;
     return regex.test(plate) ? true : false;
 }
-function wheelsRegisterValidation(wheel1Brand, wheel1Diameter, wheel2Brand, wheel2Diameter, wheel3Brand, wheel3Diameter, wheel4Brand, wheel4Diameter) {
+function wheelsRegisterValidation(brand, diameter, key) {
     var form = document.getElementById('wheels-register');
-    var errorWheel1Brand = document.getElementById('errorWheel1Brand');
-    var errorWheel1Diameter = document.getElementById('errorWheel1Diameter');
-    var errorWheel2Brand = document.getElementById('errorWheel2Brand');
-    var errorWheel2Diameter = document.getElementById('errorWheel2Diameter');
-    var errorWheel3Brand = document.getElementById('errorWheel3Brand');
-    var errorWheel3Diameter = document.getElementById('errorWheel3Diameter');
-    var errorWheel4Brand = document.getElementById('errorWheel4Brand');
-    var errorWheel4Diameter = document.getElementById('errorWheel4Diameter');
+    var errorWheelBrand = document.getElementById('errorWheelBrand' + key);
+    var errorWheelDiameter = document.getElementById('errorWheelDiameter' + key);
     var errorAccount = 0;
     form.classList.remove("is-invalid");
-    if (wheel1Brand.value == "") {
-        wheel1Brand.classList.add("is-invalid");
-        errorWheel1Brand.textContent = "Brand is a required field";
+    if (brand.value == "") {
+        brand.classList.add("is-invalid");
+        errorWheelBrand.textContent = "Brand is a required field";
         errorAccount++;
     }
-    if (!validateDiameter(Number(wheel1Diameter.value))) {
-        wheel1Diameter.classList.add("is-invalid");
-        errorWheel1Diameter.textContent = "Diameter must be between 0.4 and 2";
-        errorAccount++;
-    }
-    if (wheel2Brand.value == "") {
-        wheel2Brand.classList.add("is-invalid");
-        errorWheel2Brand.textContent = "Brand is a required field";
-        errorAccount++;
-    }
-    if (!validateDiameter(Number(wheel2Diameter.value))) {
-        wheel2Diameter.classList.add("is-invalid");
-        errorWheel2Diameter.textContent = "Diameter must be between 0.4 and 2";
-        errorAccount++;
-    }
-    if (wheel3Brand.value == "") {
-        wheel3Brand.classList.add("is-invalid");
-        errorWheel3Brand.textContent = "Brand is a required field";
-        errorAccount++;
-    }
-    if (!validateDiameter(Number(wheel3Diameter.value))) {
-        wheel3Diameter.classList.add("is-invalid");
-        errorWheel3Diameter.textContent = "Diameter must be between 0.4 and 2";
-        errorAccount++;
-    }
-    if (wheel4Brand.value == "") {
-        wheel4Brand.classList.add("is-invalid");
-        errorWheel4Brand.textContent = "Brand is a required field";
-        errorAccount++;
-    }
-    if (!validateDiameter(Number(wheel4Diameter.value))) {
-        wheel4Diameter.classList.add("is-invalid");
-        errorWheel4Diameter.textContent = "Diameter must be between 0.4 and 2";
+    if (!validateDiameter(Number(diameter.value))) {
+        diameter.classList.add("is-invalid");
+        errorWheelDiameter.textContent = "Diameter must be between 0.4 and 2";
         errorAccount++;
     }
     if (errorAccount > 0) {
