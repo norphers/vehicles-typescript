@@ -23,17 +23,20 @@ function createWheels()
         var diameter:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheelDiameter" + i);
         var key = i;
         var wheelDataValid = wheelsRegisterValidation(brand, diameter, key);
-        if(wheelDataValid)
-        {
-            wheelsValidated++;
-            
-            var wheel:Wheel = new Wheel(diameter.valueAsNumber, brand.value);
-            car.addWheel(wheel);
-        }
+        if(wheelDataValid) wheelsValidated++;
     }   
-    if(wheelsValidated==4) { generateWheelsDisplay(); }  
+    if(wheelsValidated==4) 
+    {
+        for (var i=1; i<=4; i++) 
+        {
+        var brandValidated:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheelBrand" + i);
+        var diameterValidated:HTMLInputElement = <HTMLInputElement>document.getElementById("inputWheelDiameter" + i); 
+        var wheel:Wheel = new Wheel(diameterValidated.valueAsNumber, brandValidated.value);
+        car.addWheel(wheel);
+        }
+        generateWheelsDisplay();
+    }  
 }
-
 
 // DISPLAYS //
 
@@ -196,7 +199,7 @@ function validateDiameter(diameter:number) {
 const carForm:HTMLInputElement = <HTMLInputElement>document.getElementById('car-register');
 if(carForm) {
     carForm.addEventListener('blur', (event:FocusEvent) => {
-        console.log(event);
+        //console.log(event);
         if ((<HTMLInputElement>event.target).value != "") (<HTMLInputElement>event.target).classList.remove('is-invalid');
     }, true); 
 }
@@ -204,7 +207,7 @@ if(carForm) {
 const wheelsForm:HTMLInputElement = <HTMLInputElement>document.getElementById('wheels-register');
 if(wheelsForm){
     wheelsForm.addEventListener('blur', (event:FocusEvent) => {
-        console.log(event);
+        //console.log(event);
         if ((<HTMLInputElement>event.target).value != "") (<HTMLInputElement>event.target).classList.remove('is-invalid');
     }, true);
 }
