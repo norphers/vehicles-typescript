@@ -17,13 +17,16 @@ function createWheels() {
         var diameter = document.getElementById("inputWheelDiameter" + i);
         var key = i;
         var wheelDataValid = wheelsRegisterValidation(brand, diameter, key);
-        if (wheelDataValid) {
+        if (wheelDataValid)
             wheelsValidated++;
-            var wheel = new Wheel(diameter.valueAsNumber, brand.value);
-            car.addWheel(wheel);
-        }
     }
     if (wheelsValidated == 4) {
+        for (var i = 1; i <= 4; i++) {
+            var brandValidated = document.getElementById("inputWheelBrand" + i);
+            var diameterValidated = document.getElementById("inputWheelDiameter" + i);
+            var wheel = new Wheel(diameterValidated.valueAsNumber, brandValidated.value);
+            car.addWheel(wheel);
+        }
         generateWheelsDisplay();
     }
 }
@@ -151,7 +154,7 @@ function validateDiameter(diameter) {
 var carForm = document.getElementById('car-register');
 if (carForm) {
     carForm.addEventListener('blur', function (event) {
-        console.log(event);
+        //console.log(event);
         if (event.target.value != "")
             event.target.classList.remove('is-invalid');
     }, true);
@@ -159,7 +162,7 @@ if (carForm) {
 var wheelsForm = document.getElementById('wheels-register');
 if (wheelsForm) {
     wheelsForm.addEventListener('blur', function (event) {
-        console.log(event);
+        //console.log(event);
         if (event.target.value != "")
             event.target.classList.remove('is-invalid');
     }, true);
