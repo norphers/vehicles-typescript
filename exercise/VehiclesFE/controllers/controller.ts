@@ -34,12 +34,11 @@ function createWheels()
         var wheel:Wheel = new Wheel(diameterValidated.valueAsNumber, brandValidated.value);
         car.addWheel(wheel);
         }
-        generateWheelsDisplay();
-    }  
+    }
+    generateWheelsDisplay();
 }
 
 // DISPLAYS //
-
 
 function generateCarDisplay()
 {
@@ -50,11 +49,11 @@ function generateCarDisplay()
 
 function generateWheelsDisplay()
 {
-    generateWheelsTable();
+    generateWheelsTable(car.wheels);
+    disableWheelsButton();
 }
 
 //
-
 function deleteCarContainerFromView()
 {
     let carContainer:HTMLElement = <HTMLElement>document.getElementById("car-container");
@@ -65,6 +64,12 @@ function generateWheelsContainerForView()
 {
     let wheelsContainer:HTMLElement = <HTMLElement>document.getElementById("form-wheels-creation");
     wheelsContainer.style.display = "block";
+}
+
+function disableWheelsButton() 
+{
+    let button:HTMLButtonElement = <HTMLButtonElement>document.getElementById("wheelsButton");
+    button.disabled = true;
 }
 
 function generateCarTable()
@@ -86,7 +91,7 @@ function generateCarTable()
     cellColor.appendChild(color);
 }
 
-function generateWheelsTable()
+function generateWheelsTable(wheels:Array<Wheel>)
 {
     let wheelsTable:HTMLTableElement = <HTMLTableElement>document.getElementById("wheels-table");
     let row1:HTMLTableRowElement = wheelsTable.insertRow();
@@ -97,14 +102,14 @@ function generateWheelsTable()
 
     let text11:Text = document.createTextNode('Wheels: ');
     cell11.appendChild(text11);
-
-    for(let wheel of car.wheels)
+    
+    for(let i=0; i<4; i++)
     {
         let cell2j:HTMLTableDataCellElement = row2.insertCell();
         let text2j:Text = document.createTextNode(`Wheel ${wheelNumber}:`);
         cell2j.appendChild(text2j);
         let cell3j:HTMLTableDataCellElement = row3.insertCell();
-        let text3j:Text = document.createTextNode(`Brand: ${wheel.brand} Diameter: ${wheel.diameter.toString()}`);
+        let text3j:Text = document.createTextNode(`Brand: ${wheels[i].brand} Diameter: ${wheels[i].diameter.toString()}`);
         cell3j.appendChild(text3j);
         wheelNumber++;
     }
@@ -211,4 +216,3 @@ if(wheelsForm){
         if ((<HTMLInputElement>event.target).value != "") (<HTMLInputElement>event.target).classList.remove('is-invalid');
     }, true);
 }
-
