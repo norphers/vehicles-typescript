@@ -27,8 +27,8 @@ function createWheels() {
             var wheel = new Wheel(diameterValidated.valueAsNumber, brandValidated.value);
             car.addWheel(wheel);
         }
-        generateWheelsDisplay();
     }
+    generateWheelsDisplay();
 }
 // DISPLAYS //
 function generateCarDisplay() {
@@ -37,7 +37,8 @@ function generateCarDisplay() {
     generateCarTable();
 }
 function generateWheelsDisplay() {
-    generateWheelsTable();
+    generateWheelsTable(car.wheels);
+    disableWheelsButton();
 }
 //
 function deleteCarContainerFromView() {
@@ -47,6 +48,10 @@ function deleteCarContainerFromView() {
 function generateWheelsContainerForView() {
     var wheelsContainer = document.getElementById("form-wheels-creation");
     wheelsContainer.style.display = "block";
+}
+function disableWheelsButton() {
+    var button = document.getElementById("wheelsButton");
+    button.disabled = true;
 }
 function generateCarTable() {
     var carDisplayContent = document.getElementById("car-table");
@@ -65,7 +70,7 @@ function generateCarTable() {
     cellBrand.appendChild(brand);
     cellColor.appendChild(color);
 }
-function generateWheelsTable() {
+function generateWheelsTable(wheels) {
     var wheelsTable = document.getElementById("wheels-table");
     var row1 = wheelsTable.insertRow();
     var row2 = wheelsTable.insertRow();
@@ -74,13 +79,12 @@ function generateWheelsTable() {
     var wheelNumber = 1;
     var text11 = document.createTextNode('Wheels: ');
     cell11.appendChild(text11);
-    for (var _i = 0, _a = car.wheels; _i < _a.length; _i++) {
-        var wheel = _a[_i];
+    for (var i = 0; i < 4; i++) {
         var cell2j = row2.insertCell();
         var text2j = document.createTextNode("Wheel " + wheelNumber + ":");
         cell2j.appendChild(text2j);
         var cell3j = row3.insertCell();
-        var text3j = document.createTextNode("Brand: " + wheel.brand + " Diameter: " + wheel.diameter.toString());
+        var text3j = document.createTextNode("Brand: " + wheels[i].brand + " Diameter: " + wheels[i].diameter.toString());
         cell3j.appendChild(text3j);
         wheelNumber++;
     }
